@@ -1,0 +1,15 @@
+
+
+<h2>Import Users</h2>
+<form enctype="multipart/form-data" action="/users/import" accept-charset="UTF-8" method="post">
+<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <input type="file" name="file" id="file" />
+  <input type="submit" name="commit" value="Import" data-disable-with="Import" />
+</form>
+
+<h2>Import Commissions</h2>
+<form enctype="multipart/form-data" action="/transactions/import" accept-charset="UTF-8" method="post">
+<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <input type="file" name="file" id="file" />
+  <input type="submit" name="commit" value="Import" data-disable-with="Import" />
+</form>
