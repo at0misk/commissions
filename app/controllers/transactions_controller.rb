@@ -1,6 +1,7 @@
 class TransactionsController < ApplicationController
 	def import
 		Transaction.import(params[:file])
+		flash[:imported] = "Commissions imported"
 		redirect_to '/transactions'
 	end
 	def destroy_all

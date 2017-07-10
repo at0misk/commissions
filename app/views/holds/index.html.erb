@@ -1,5 +1,5 @@
-<%= link_to 'Excel Download', transactions_path(:format => :xls) %>
-<a href="/transactions/destroy_all" data-confirm="Clear current chart?">Clear Currenct</a>
+<%#= link_to 'Excel Download', transactions_path(:format => :xls) %>
+<a href="/holds/destroy_all" data-confirm="Clear current chart?">Clear Currenct</a>
 <table class="table table-responsive table-striped">
 	<thead>
 		<tr>
@@ -15,13 +15,13 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% @transactions.each do |val| %>
+		<% @holds.each do |val| %>
 			<% if val.commission_total != 0 %>
 				<tr>
 				<td><%= val.invoice %></td>
 				<td><%= val.agent_id %></td>
 				<% @user = User.find_by(evo_id: val.agent_id) %>
-				<td><a href="/users/<%= @user.id %>"><%= @user.first %> <%= @user.last %></a></td>
+				<td><%= @user.first %> <% @user.last %></td>
 				<td><%= val.upline_id %></td>
 				<% @upline = User.find_by(evo_id: val.upline_id) %>
 				<% if @upline %>

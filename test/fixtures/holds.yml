@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  acct: MyString
+  invoice: 1
+  issue_date: 2017-07-10
+  rev: MyString
+  traveler: MyString
+  dep_date: 2017-07-10
+  ret_date: 2017-07-10
+  method: MyString
+  ticket: MyString
+  itinerary: MyString
+  name: MyString
+  c2go: MyString
+  email: MyString
+
+two:
+  acct: MyString
+  invoice: 1
+  issue_date: 2017-07-10
+  rev: MyString
+  traveler: MyString
+  dep_date: 2017-07-10
+  ret_date: 2017-07-10
+  method: MyString
+  ticket: MyString
+  itinerary: MyString
+  name: MyString
+  c2go: MyString
+  email: MyString

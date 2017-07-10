@@ -15,6 +15,7 @@ class User < ApplicationRecord
 			user.upline_id = row['SponsorID']
 			user.first = row['FirstName']
 			user.last = row['LastName']
+			puts user.last.upcase
 			user.save!
 		end
 	end

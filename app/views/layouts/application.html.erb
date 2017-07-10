@@ -22,6 +22,9 @@
 	  		<div class="col-sm-12">
 			  	<a href="/">Home</a>
 			  	<a href="/transactions">Commissions</a>
+			  	<% if flash[:imported] %>
+			  	<h5><%= flash[:imported] %></h5>
+			  	<% end %>
 		  	</div>
 	  </div>
   </div>

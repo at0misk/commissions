@@ -10,7 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170710151236) do
+ActiveRecord::Schema.define(version: 20170710173131) do
+
+  create_table "holds", force: :cascade do |t|
+    t.string   "acct"
+    t.integer  "invoice"
+    t.date     "issue_date"
+    t.string   "rev"
+    t.string   "traveler"
+    t.date     "dep_date"
+    t.date     "ret_date"
+    t.string   "method"
+    t.string   "ticket"
+    t.string   "itinerary"
+    t.string   "name"
+    t.string   "c2go"
+    t.string   "email"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.decimal  "fare_total", precision: 8, scale: 4
+    t.decimal  "comm_total", precision: 8, scale: 4
+    t.decimal  "air",        precision: 8, scale: 4
+    t.decimal  "eight_nine", precision: 8, scale: 4
+    t.decimal  "upline",     precision: 8, scale: 4
+    t.decimal  "paid_agent", precision: 8, scale: 4
+    t.integer  "evo_id"
+  end
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
@@ -35,8 +60,8 @@ ActiveRecord::Schema.define(version: 20170710151236) do
 
   create_table "users", force: :cascade do |t|
     t.integer  "upline_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.string   "act"
     t.string   "invoice"
     t.string   "revenue_type"
@@ -47,6 +72,7 @@ ActiveRecord::Schema.define(version: 20170710151236) do
     t.integer  "evo_id"
     t.string   "first"
     t.string   "last"
+    t.decimal  "balance",      precision: 8, scale: 4
   end
 
 end

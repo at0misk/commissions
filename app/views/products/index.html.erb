@@ -13,3 +13,10 @@
   <input type="file" name="file" id="file" />
   <input type="submit" name="commit" value="Import" data-disable-with="Import" />
 </form>
+
+<h2>Import Holds</h2>
+<form enctype="multipart/form-data" action="/holds/import" accept-charset="UTF-8" method="post">
+<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <input type="file" name="file" id="file" />
+  <input type="submit" name="commit" value="Import" data-disable-with="Import" />
+</form>
