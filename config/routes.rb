@@ -5,6 +5,7 @@ resources :products do
 end
 post '/users/import' => 'users#import'
 post '/transactions/import' => 'transactions#import'
+get '/transactions/destroy_all' => 'transactions#destroy_all'
 resources :transactions do
   collection { post :import }
 end

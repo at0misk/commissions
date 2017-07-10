@@ -1,6 +1,11 @@
 class TransactionsController < ApplicationController
 	def import
 		Transaction.import(params[:file])
+		redirect_to '/transactions'
+	end
+	def destroy_all
+		Transaction.destroy_all
+		redirect_to '/'
 	end
 	def index
 		@transactions = Transaction.all
