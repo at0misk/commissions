@@ -64,7 +64,7 @@
 <% else %>
 <h5>No Upline Payouts Found</h5>
 <% end %>
-<h3>Pending Holds:</h3>
+<h3>Pending Recalls/Holds:</h3>
 <% if @holds_pending.length > 0 %>
 <table class="table table-responsive table-striped">
 	<thead>
@@ -83,12 +83,12 @@
 				<td><%= number_to_currency(val.comm_total) %></td>
 				<td><%= number_to_currency(val.upline) %></td>
 				<td><%= number_to_currency(val.upline) %></td>
-				<td class="red"><%= number_to_currency(val.paid_agent) %></td>
-				<% if val.paid_agent < 0 %>
-					<% @total += val.paid_agent %>
+				<% if val.paid_agent > 0 %>
+				<td class="red">+<%= number_to_currency(val.paid_agent) %></td>
 				<% else %>
-					<% @total -= val.paid_agent %>
+				<td class="red"><%= number_to_currency(val.paid_agent) %></td>
 				<% end %>
+					<% @total += val.paid_agent %>
 				</tr>
 		<% end %>
 	</tbody>

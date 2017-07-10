@@ -2,30 +2,42 @@
 	.red{
 		color: red;
 	}
+	.btn-row button{
+		display: inline-block;
+		margin-left: 20px;
+	}
+	.btn-row form{
+		display: inline-block;
+		margin-left: 20px;
+	}
 </style>
-<a href="/holds/destroy_all" data-confirm="Clear current chart?">Clear Currenct</a>
-<table class="table table-responsive table-striped">
-	<thead>
-		<tr>
-		<th>Invoice</th>
-		<th>Account</th>
-		<th>Name</th>
-		<th>Issue_Date</th>
-		<th>Method</th>
-		<th>Paid Agent</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @holds.each do |val| %>
-				<tr>
-				<td><%= val.invoice %></td>
-				<td><%= val.acct %></td>
-				<% @user = User.find_by(evo_id: val.evo_id) %>
-				<td><a href="/users/<%= @user.id %>"><%= @user.first %> <%= @user.last %></a></td>
-				<td><%= val.issue_date %></td>
-				<td><%= val.method %></td>
-				<td class="red"><%= number_to_currency(val.paid_agent) %></td>
-				</tr>
-		<% end %>
-	</tbody>
-</table>
+<div class="container-fluid">
+	<div class="row btn-row">
+	<a href="/holds/destroy_all" data-confirm="Clear current chart?"><button class="btn btn-danger">Clear Currenct</button></a>
+	</div>
+	<table class="table table-responsive table-striped">
+		<thead>
+			<tr>
+			<th>Invoice</th>
+			<th>Account</th>
+			<th>Name</th>
+			<th>Issue_Date</th>
+			<th>Method</th>
+			<th>Paid Agent</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @holds.each do |val| %>
+					<tr>
+					<td><%= val.invoice %></td>
+					<td><%= val.acct %></td>
+					<% @user = User.find_by(evo_id: val.evo_id) %>
+					<td><a href="/users/<%= @user.id %>"><%= @user.first %> <%= @user.last %></a></td>
+					<td><%= val.issue_date %></td>
+					<td><%= val.method %></td>
+					<td class="red"><%= number_to_currency(val.paid_agent) %></td>
+					</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
