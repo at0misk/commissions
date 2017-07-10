@@ -6,6 +6,7 @@ class TransactionsController < ApplicationController
 	end
 	def destroy_all
 		Transaction.destroy_all
+		flash[:imported] = "Commissions cleared"
 		redirect_to '/'
 	end
 	def index

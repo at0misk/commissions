@@ -7,4 +7,9 @@ class HoldsController < ApplicationController
 	def index
 		@holds = Hold.all
 	end
+	def destroy_all
+		Hold.destroy_all
+		flash[:imported] = "Holds cleared"
+		redirect_to '/'
+	end
 end
