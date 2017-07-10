@@ -84,7 +84,11 @@
 				<td><%= number_to_currency(val.upline) %></td>
 				<td><%= number_to_currency(val.upline) %></td>
 				<td class="red"><%= number_to_currency(val.paid_agent) %></td>
-				<% @total += val.paid_agent %>
+				<% if val.paid_agent < 0 %>
+					<% @total += val.paid_agent %>
+				<% else %>
+					<% @total -= val.paid_agent %>
+				<% end %>
 				</tr>
 		<% end %>
 	</tbody>

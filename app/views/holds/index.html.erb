@@ -1,42 +1,31 @@
-<%#= link_to 'Excel Download', transactions_path(:format => :xls) %>
+<style type="text/css">
+	.red{
+		color: red;
+	}
+</style>
 <a href="/holds/destroy_all" data-confirm="Clear current chart?">Clear Currenct</a>
 <table class="table table-responsive table-striped">
 	<thead>
 		<tr>
 		<th>Invoice</th>
-		<th>Agent ID</th>
-		<th>Agent Name</th>
-		<th>Upline ID</th>
-		<th>Upline Name</th>
-		<th>Commission Total</th>
-		<th>Agent Commission</th>
-		<th>Upline Commission</th>
-		<th>Evolution Commission</th>
+		<th>Account</th>
+		<th>Name</th>
+		<th>Issue_Date</th>
+		<th>Method</th>
+		<th>Paid Agent</th>
 		</tr>
 	</thead>
 	<tbody>
 		<% @holds.each do |val| %>
-			<% if val.commission_total != 0 %>
 				<tr>
 				<td><%= val.invoice %></td>
-				<td><%= val.agent_id %></td>
-				<% @user = User.find_by(evo_id: val.agent_id) %>
-				<td><%= @user.first %> <% @user.last %></td>
-				<td><%= val.upline_id %></td>
-				<% @upline = User.find_by(evo_id: val.upline_id) %>
-				<% if @upline %>
-				<td><%= @upline.first %> <%= @upline.last %></td>
-				<% else %>
-				<td></td>
-				<% end %>
-				<td><%= number_to_currency(val.commission_total) %></td>
-				<td><%= number_to_currency(val.agent_total) %></td>
-				<td><%= number_to_currency(val.upline_total) %></td>
-				<td><%= number_to_currency(val.evo_total) %></td>
+				<td><%= val.acct %></td>
+				<% @user = User.find_by(evo_id: val.evo_id) %>
+				<td><a href="/users/<%= @user.id %>"><%= @user.first %> <%= @user.last %></a></td>
+				<td><%= val.issue_date %></td>
+				<td><%= val.method %></td>
+				<td class="red"><%= number_to_currency(val.paid_agent) %></td>
 				</tr>
-			<% end %>
 		<% end %>
 	</tbody>
 </table>
-
-<%= link_to "Excel", transactions_path(format: "xls") %>

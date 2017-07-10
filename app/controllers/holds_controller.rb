@@ -5,5 +5,6 @@ class HoldsController < ApplicationController
 	  redirect_to '/'
 	end
 	def index
+		@holds = Hold.all
 	end
 end
