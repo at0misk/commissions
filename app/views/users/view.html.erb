@@ -7,97 +7,103 @@
 	}
 </style>
 <% @total = 0.00 %>
-<h2><%= @user.first %> <%= @user.last %></h2>
-<h3>Pending Commission Payouts:</h3>
-<table class="table table-responsive table-striped">
-	<thead>
-		<tr>
-		<th>Invoice</th>
-		<th>Commission Total</th>
-		<th>Evolution Commission</th>
-		<th>Upline Commission</th>
-		<th>Agent Commission</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @pending.each do |val| %>
-			<% if val.commission_total != 0 %>
-				<tr>
-				<td><%= val.invoice %></td>
-				<td><%= number_to_currency(val.commission_total) %></td>
-				<td><%= number_to_currency(val.evo_total) %></td>
-				<td><%= number_to_currency(val.upline_total) %></td>
-				<td class="green"><%= number_to_currency(val.agent_total) %></td>
-				<% @total += val.agent_total %>
-				</tr>
-			<% end %>
-		<% end %>
-	</tbody>
-</table>
-<h3>Pending Upline Payouts:</h3>
-<% if @upline.length > 0 %>
-<table class="table table-responsive table-striped">
-	<thead>
-		<tr>
-		<th>Invoice</th>
-		<th>Commission Total</th>
-		<th>Evolution Commission</th>
-		<th>Agent Commission</th>
-		<th>Upline Commission</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @upline.each do |val| %>
-			<% if val.commission_total != 0 %>
-				<tr>
-				<td><%= val.invoice %></td>
-				<td><%= number_to_currency(val.commission_total) %></td>
-				<td><%= number_to_currency(val.evo_total) %></td>
-				<td><%= number_to_currency(val.agent_total) %></td>
-				<td class="green"><%= number_to_currency(val.upline_total) %></td>
-				<% @total += val.upline_total %>
-				</tr>
-			<% end %>
-		<% end %>
-	</tbody>
-</table>
-<% else %>
-<h5>No Upline Payouts Found</h5>
-<% end %>
-<h3>Pending Recalls/Holds:</h3>
-<% if @holds_pending.length > 0 %>
-<table class="table table-responsive table-striped">
-	<thead>
-		<tr>
-		<th>Invoice</th>
-		<th>Commission Total</th>
-		<th>Evolution Commission</th>
-		<th>Upline Commission</th>
-		<th>Paid Agent</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @holds_pending.each do |val| %>
-				<tr>
-				<td><%= val.invoice %></td>
-				<td><%= number_to_currency(val.comm_total) %></td>
-				<td><%= number_to_currency(val.upline) %></td>
-				<td><%= number_to_currency(val.upline) %></td>
-				<% if val.paid_agent > 0 %>
-				<td class="red">+<%= number_to_currency(val.paid_agent) %></td>
-				<% else %>
-				<td class="red"><%= number_to_currency(val.paid_agent) %></td>
+<div class="container-fluid">
+	<h2><%= @user.first %> <%= @user.last %></h2>
+	<h3>Evo ID: <%= @user.evo_id %></h3>
+	<% if @user.c2go %>
+		<h3>C2GO ID: <%= @user.c2go %></h3>
+	<% end %>
+	<h3>Pending Commission Payouts:</h3>
+	<table class="table table-responsive table-striped">
+		<thead>
+			<tr>
+			<th>Invoice</th>
+			<th>Commission Total</th>
+			<th>Evolution Commission</th>
+			<th>Upline Commission</th>
+			<th>Agent Commission</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @pending.each do |val| %>
+				<% if val.commission_total != 0 %>
+					<tr>
+					<td><%= val.invoice %></td>
+					<td><%= number_to_currency(val.commission_total) %></td>
+					<td><%= number_to_currency(val.evo_total) %></td>
+					<td><%= number_to_currency(val.upline_total) %></td>
+					<td class="green"><%= number_to_currency(val.agent_total) %></td>
+					<% @total += val.agent_total %>
+					</tr>
 				<% end %>
-					<% @total += val.paid_agent %>
-				</tr>
-		<% end %>
-	</tbody>
-</table>
-<% else %>
-<h5>No Holds Found</h5>
-<% end %>
-<% if @total > 0 %>
-<h3>Payout Ammount: <span class="green"><%= number_to_currency(@total) %></span></h3>
-<% else %>
-<h3>Payout Ammount: <span class="red"><%= number_to_currency(@total) %></span></h3>
-<% end %>
+			<% end %>
+		</tbody>
+	</table>
+	<h3>Pending Upline Payouts:</h3>
+	<% if @upline.length > 0 %>
+	<table class="table table-responsive table-striped">
+		<thead>
+			<tr>
+			<th>Invoice</th>
+			<th>Commission Total</th>
+			<th>Evolution Commission</th>
+			<th>Agent Commission</th>
+			<th>Upline Commission</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @upline.each do |val| %>
+				<% if val.commission_total != 0 %>
+					<tr>
+					<td><%= val.invoice %></td>
+					<td><%= number_to_currency(val.commission_total) %></td>
+					<td><%= number_to_currency(val.evo_total) %></td>
+					<td><%= number_to_currency(val.agent_total) %></td>
+					<td class="green"><%= number_to_currency(val.upline_total) %></td>
+					<% @total += val.upline_total %>
+					</tr>
+				<% end %>
+			<% end %>
+		</tbody>
+	</table>
+	<% else %>
+	<h5>No Upline Payouts Found</h5>
+	<% end %>
+	<h3>Pending Recalls/Holds:</h3>
+	<% if @holds_pending.length > 0 %>
+	<table class="table table-responsive table-striped">
+		<thead>
+			<tr>
+			<th>Invoice</th>
+			<th>Commission Total</th>
+			<th>Evolution Commission</th>
+			<th>Upline Commission</th>
+			<th>Paid Agent</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @holds_pending.each do |val| %>
+					<tr>
+					<td><%= val.invoice %></td>
+					<td><%= number_to_currency(val.comm_total) %></td>
+					<td><%= number_to_currency(val.upline) %></td>
+					<td><%= number_to_currency(val.upline) %></td>
+					<% if val.paid_agent > 0 %>
+					<td class="red">+<%= number_to_currency(val.paid_agent) %></td>
+					<% else %>
+					<td class="red"><%= number_to_currency(val.paid_agent) %></td>
+					<% end %>
+						<% @total += val.paid_agent %>
+					</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<% else %>
+	<h5>No Holds Found</h5>
+	<% end %>
+	<% if @total > 0 %>
+	<h3>Payout Ammount: <span class="green"><%= number_to_currency(@total) %></span></h3>
+	<% else %>
+	<h3>Payout Ammount: <span class="red"><%= number_to_currency(@total) %></span></h3>
+	<% end %>
+</div>

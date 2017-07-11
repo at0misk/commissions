@@ -12,4 +12,7 @@ class UsersController < ApplicationController
 		@holds_pending = Hold.where(evo_id: @user.evo_id) if @user
 		@upline_holds_pending = Hold.where(evo_id: @upline_user.evo_id) if @upline_user
 	end
+	def international
+		@users = User.where("country != ? or country is null", "US")
+	end
 end

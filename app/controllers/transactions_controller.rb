@@ -33,4 +33,7 @@ class TransactionsController < ApplicationController
 		    # }
 		  end
 	end
+	def international
+		@transactions = Transaction.where("country != ? or country is null", "US")
+	end
 end

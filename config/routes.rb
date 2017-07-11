@@ -14,5 +14,6 @@ get '/transactions' => 'transactions#index'
 get '/users/:id' => 'users#view'
 get '/holds' => 'holds#index'
 get '/holds/destroy_all' => 'holds#destroy_all'
+get '/international' => 'transactions#international'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -11,6 +11,7 @@ class Transaction < ApplicationRecord
 			if user
 				transaction.agent_id = row['evo_id']
 				transaction.upline_id = user.upline_id
+				transaction.country = user.country
 				transaction.agent_total = (row['commission_total']*0.8).round(2)
 				transaction.upline_total = (row['commission_total']*0.1).round(2)
 				transaction.evo_total = (row['commission_total']*0.1).round(2)

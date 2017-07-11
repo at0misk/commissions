@@ -5,17 +5,21 @@ class User < ApplicationRecord
 	  header = spreadsheet.row(1)
 		(2..spreadsheet.last_row).each do |i|
 			row = Hash[[header, spreadsheet.row(i)].transpose]
-			user = find_by(evo_id: row["evo_id"]) || new
-			puts i[0]
-			puts "=================="
-			puts row['ID']
-			puts "=================="
-			# fail
+			user = find_by(evo_id: row["ID"]) || new
 			user.evo_id = row['ID']
 			user.upline_id = row['SponsorID']
 			user.first = row['FirstName']
 			user.last = row['LastName']
-			puts user.last.upcase
+			user.c2go = row['C2GOID']
+			user.web_name = row['WebRepName']
+			user.address = row['Address']
+			user.apt = row['Apt']
+			user.city = row['City']
+			user.state = row['State']
+			user.zip = row['Zip']
+			user.country = row['Country']
+			user.phone = row['Cellular']
+			user.email = row['email']
 			user.save!
 		end
 	end
