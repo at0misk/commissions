@@ -27,6 +27,7 @@
 			<th>Issue_Date</th>
 			<th>Method</th>
 			<th>Paid Agent</th>
+			<th>Processed</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -46,6 +47,11 @@
 					<% end %>
 					<td><%= val.method %></td>
 					<td class="red"><%= number_to_currency(val.paid_agent) %></td>
+					<% if @user.processed %>
+						<td class="green">Processed</td>
+					<% else %>
+						<td class="red">Not Processed</td>
+					<% end %>
 					</tr>
 			<% end %>
 		</tbody>
