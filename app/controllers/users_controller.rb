@@ -20,4 +20,13 @@ class UsersController < ApplicationController
 		@user.update_attribute(:processed, true)
 		redirect_to "/users/#{@user.id}"
 	end
+	def search
+		@user = User.find_by(evo_id: params['id'])
+		if @user
+			redirect_to "/users/#{@user.id}" and return
+		else
+			flash[:imported] = "No user found"
+			redirect_to "/transactions" and return
+		end
+	end
 end

@@ -12,6 +12,7 @@ end
 post '/holds/import' => 'holds#import'
 get '/transactions' => 'transactions#index'
 get '/users/process/:id' => 'users#process_user'
+post '/users/search'
 get '/users/:id' => 'users#view'
 get '/holds' => 'holds#index'
 get '/holds/destroy_all' => 'holds#destroy_all'
