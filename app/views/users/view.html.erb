@@ -13,7 +13,7 @@
 		display: inline-block;
 	}
 	.payout{
-		/*margin: 0px auto;*/
+		margin-bottom: 20px;
 	}
 </style>
 <% @total = BigDecimal.new("0") %>
@@ -130,7 +130,7 @@
 		<h3>Payout Ammount: <span class="red"><%= number_to_currency(@total.round(2)) %></span></h3>
 		<% end %>
 		<% if !@user.processed %>
-			<a href="/users/process/<%= @user.id %>"><button class="btn btn-primary">Process</button></a>
+			<a href="/users/process/<%= @user.id %>" data-confirm="Mark as processed?"><button class="btn btn-primary">Process</button></a>
 		<% else %>
 			<h3 class="green">Processed</h3>
 		<% end %>
