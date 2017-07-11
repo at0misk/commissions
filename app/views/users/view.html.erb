@@ -97,7 +97,8 @@
 		<thead>
 			<tr>
 			<th>Invoice</th>
-			<th>Commission Total</th>
+			<th>Traveler</th>
+			<th>Itinerary</th>
 			<th>Method</th>
 			<th>Evolution Commission</th>
 			<th>Upline Commission</th>
@@ -108,7 +109,8 @@
 			<% @holds_pending.each do |val| %>
 					<tr>
 					<td><%= val.invoice %></td>
-					<td><%= number_to_currency(val.comm_total) %></td>
+					<td><%= val.traveler %></td>
+					<td><%= val.itinerary %></td>
 					<td><%= val.method %></td>
 					<td><%= number_to_currency(val.upline) %></td>
 					<td><%= number_to_currency(val.upline) %></td>
@@ -135,6 +137,7 @@
 			<a href="/users/process/<%= @user.id %>" data-confirm="Mark as processed?"><button class="btn btn-primary">Process</button></a>
 		<% else %>
 			<h3 class="green">Processed</h3>
+			<a href="/users/unprocess/<%= @user.id %>" data-confirm="Mark as unprocessed?"><button class="btn btn-danger">Re-Open</button></a>
 		<% end %>
 	</div>
 </div>

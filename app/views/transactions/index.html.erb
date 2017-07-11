@@ -22,6 +22,8 @@
 		<th>Invoice</th>
 		<th>Agent ID</th>
 		<th>C2GO ID</th>
+		<th>Issue Date</th>
+		<th>Itinerary</th>
 		<th>Agent Name</th>
 		<th>Upline ID</th>
 		<th>Upline Name</th>
@@ -36,10 +38,16 @@
 		<% @transactions.each do |val| %>
 			<% if val.commission_total != 0 %>
 				<tr>
+				<% @user = User.find_by(evo_id: val.agent_id) %>
 				<td><%= val.invoice %></td>
 				<td><%= val.agent_id %></td>
-				<% @user = User.find_by(evo_id: val.agent_id) %>
 				<td><%= @user.c2go %></td>
+				<% if val.issue_date %>
+				<td><%= val.issue_date.strftime("%m/%d/%y") %></td>
+				<% else %>
+				<td></td>
+				<% end %>
+				<td><%= val.itinerary %></td>
 				<td><a href="/users/<%= @user.id %>"><%= @user.first %> <%= @user.last %></a></td>
 				<td><%= val.upline_id %></td>
 				<% @upline = User.find_by(evo_id: val.upline_id) %>

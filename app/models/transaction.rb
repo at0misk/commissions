@@ -19,6 +19,7 @@ class Transaction < ApplicationRecord
 				transaction.invoice = row['invoice']
 				transaction.traveler = row['traveler']
 				transaction.itinerary = row['itinerary']
+				transaction.issue_date = row['issue_date']
 				transaction.save!
 			end
 		end

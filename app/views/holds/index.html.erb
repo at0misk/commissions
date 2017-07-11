@@ -23,6 +23,7 @@
 			<th>Invoice</th>
 			<th>Account</th>
 			<th>Name</th>
+			<th>Itinerary</th>
 			<th>Issue_Date</th>
 			<th>Method</th>
 			<th>Paid Agent</th>
@@ -37,7 +38,12 @@
 					<td><%= val.acct %></td>
 					<% @user = User.find_by(evo_id: val.evo_id) %>
 					<td><a href="/users/<%= @user.id %>"><%= @user.first %> <%= @user.last %></a></td>
+					<td><%= val.itinerary %></td>
+					<% if val.issue_date %>
 					<td><%= val.issue_date.strftime("%m/%d/%y") %></td>
+					<% else %>
+					<td></td>
+					<% end %>
 					<td><%= val.method %></td>
 					<td class="red"><%= number_to_currency(val.paid_agent) %></td>
 					</tr>

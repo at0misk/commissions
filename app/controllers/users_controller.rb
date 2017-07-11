@@ -20,6 +20,11 @@ class UsersController < ApplicationController
 		@user.update_attribute(:processed, true)
 		redirect_to "/users/#{@user.id}"
 	end
+	def unprocess_user
+		@user = User.find(params['id'])
+		@user.update_attribute(:processed, false)
+		redirect_to "/users/#{@user.id}"
+	end
 	def search
 		@user = User.find_by(evo_id: params['id'])
 		if @user
