@@ -6,9 +6,10 @@ class Transaction < ApplicationRecord
 	  header = spreadsheet.row(1)
 		(2..spreadsheet.last_row).each do |i|
 			row = Hash[[header, spreadsheet.row(i)].transpose]
-			transaction = find_by(invoice: row["invoice"]) || new
+			transaction = find_by(key: row["key"]) || new
 			user = User.find_by(evo_id: row['evo_id'])
 			if user
+				transaction.key = row['key']
 				transaction.agent_id = row['evo_id']
 				transaction.upline_id = user.upline_id
 				transaction.country = user.country
