@@ -98,6 +98,7 @@
 			<tr>
 			<th>Invoice</th>
 			<th>Commission Total</th>
+			<th>Method</th>
 			<th>Evolution Commission</th>
 			<th>Upline Commission</th>
 			<th>Paid Agent</th>
@@ -108,6 +109,7 @@
 					<tr>
 					<td><%= val.invoice %></td>
 					<td><%= number_to_currency(val.comm_total) %></td>
+					<td><%= val.method %></td>
 					<td><%= number_to_currency(val.upline) %></td>
 					<td><%= number_to_currency(val.upline) %></td>
 					<% if val.paid_agent > 0 %>
