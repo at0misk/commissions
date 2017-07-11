@@ -15,4 +15,9 @@ class UsersController < ApplicationController
 	def international
 		@users = User.where("country != ? or country is null", "US")
 	end
+	def process_user
+		@user = User.find(params['id'])
+		@user.update_attribute(:processed, true)
+		redirect_to "/users/#{@user.id}"
+	end
 end

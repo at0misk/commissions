@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170711161026) do
+ActiveRecord::Schema.define(version: 20170711170050) do
 
   create_table "holds", force: :cascade do |t|
     t.string   "acct"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20170711161026) do
     t.string   "country"
     t.string   "phone"
     t.string   "email"
+    t.boolean  "processed"
   end
 
 end

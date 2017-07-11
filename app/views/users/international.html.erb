@@ -22,6 +22,7 @@
 		<th>Country</th>
 		<th>Upline ID</th>
 		<th>Upline Name</th>
+		<th>Processed</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -38,6 +39,12 @@
 				<% else %>
 				<td></td>
 				<% end %>
+				<% if @user.processed %>
+					<td class="green">Processed</td>
+				<% else %>
+					<td class="red">Not Processed</td>
+				<% end %>
+				</tr>
 			</tr>
 		<% end %>
 	</tbody>

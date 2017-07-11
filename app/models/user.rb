@@ -20,6 +20,10 @@ class User < ApplicationRecord
 			user.country = row['Country']
 			user.phone = row['Cellular']
 			user.email = row['email']
+			if user.processed == true
+			else
+				user.processed = false
+			end
 			user.save!
 		end
 	end

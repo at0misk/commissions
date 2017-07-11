@@ -5,14 +5,28 @@
 	.red{
 		color: red;
 	}
+	.header-col h3{
+		display: inline-block;
+		margin-left: 50px;
+	}
+	.header-col h2{
+		display: inline-block;
+	}
+	.payout{
+		/*margin: 0px auto;*/
+	}
 </style>
 <% @total = 0.00 %>
 <div class="container-fluid">
-	<h2><%= @user.first %> <%= @user.last %></h2>
-	<h3>Evo ID: <%= @user.evo_id %></h3>
-	<% if @user.c2go %>
-		<h3>C2GO ID: <%= @user.c2go %></h3>
-	<% end %>
+	<div class="row">
+		<div class="col-sm-12 header-col">
+			<h2><%= @user.first %> <%= @user.last %></h2>
+			<h3>Evo ID: <%= @user.evo_id %></h3>
+			<% if @user.c2go %>
+				<h3>C2GO ID: <%= @user.c2go %></h3>
+			<% end %>
+		</div>
+	</div>
 	<h3>Pending Commission Payouts:</h3>
 	<table class="table table-responsive table-striped">
 		<thead>
@@ -101,9 +115,16 @@
 	<% else %>
 	<h5>No Holds Found</h5>
 	<% end %>
-	<% if @total > 0 %>
-	<h3>Payout Ammount: <span class="green"><%= number_to_currency(@total) %></span></h3>
-	<% else %>
-	<h3>Payout Ammount: <span class="red"><%= number_to_currency(@total) %></span></h3>
-	<% end %>
+	<div class="payout">
+		<% if @total > 0 %>
+		<h3>Payout Ammount: <span class="green"><%= number_to_currency(@total) %></span></h3>
+		<% else %>
+		<h3>Payout Ammount: <span class="red"><%= number_to_currency(@total) %></span></h3>
+		<% end %>
+		<% if !@user.processed %>
+			<a href="/users/process/<%= @user.id %>"><button class="btn btn-primary">Process</button></a>
+		<% else %>
+			<h3 class="green">Processed</h3>
+		<% end %>
+	</div>
 </div>

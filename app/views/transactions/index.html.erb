@@ -26,6 +26,7 @@
 		<th>Agent Commission</th>
 		<th>Upline Commission</th>
 		<th>Evolution Commission</th>
+		<th>Processed</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -48,6 +49,11 @@
 				<td><%= number_to_currency(val.agent_total) %></td>
 				<td><%= number_to_currency(val.upline_total) %></td>
 				<td><%= number_to_currency(val.evo_total) %></td>
+				<% if @user.processed %>
+					<td class="green">Processed</td>
+				<% else %>
+					<td class="red">Not Processed</td>
+				<% end %>
 				</tr>
 			<% end %>
 		<% end %>
