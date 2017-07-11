@@ -17,6 +17,8 @@ class Transaction < ApplicationRecord
 				transaction.evo_total = (row['commission_total']*0.1).round(2)
 				transaction.commission_total = row['commission_total']
 				transaction.invoice = row['invoice']
+				transaction.traveler = row['traveler']
+				transaction.itinerary = row['itinerary']
 				transaction.save!
 			end
 		end

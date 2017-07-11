@@ -16,7 +16,7 @@
 		/*margin: 0px auto;*/
 	}
 </style>
-<% @total = 0.00 %>
+<% @total = BigDecimal.new("0") %>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-12 header-col">
@@ -32,6 +32,8 @@
 		<thead>
 			<tr>
 			<th>Invoice</th>
+			<th>Traveler</th>
+			<th>Itinerary</th>
 			<th>Commission Total</th>
 			<th>Evolution Commission</th>
 			<th>Upline Commission</th>
@@ -43,11 +45,13 @@
 				<% if val.commission_total != 0 %>
 					<tr>
 					<td><%= val.invoice %></td>
+					<td><%= val.traveler %></td>
+					<td><%= val.itinerary %></td>
 					<td><%= number_to_currency(val.commission_total) %></td>
 					<td><%= number_to_currency(val.evo_total) %></td>
 					<td><%= number_to_currency(val.upline_total) %></td>
 					<td class="green"><%= number_to_currency(val.agent_total) %></td>
-					<% @total += val.agent_total %>
+					<% @total += BigDecimal.new(val.agent_total).round(2) %>
 					</tr>
 				<% end %>
 			<% end %>
@@ -59,6 +63,8 @@
 		<thead>
 			<tr>
 			<th>Invoice</th>
+			<th>Traveler</th>
+			<th>Itinerary</th>
 			<th>Commission Total</th>
 			<th>Evolution Commission</th>
 			<th>Agent Commission</th>
@@ -70,11 +76,13 @@
 				<% if val.commission_total != 0 %>
 					<tr>
 					<td><%= val.invoice %></td>
+					<td><%= val.traveler %></td>
+					<td><%= val.itinerary %></td>
 					<td><%= number_to_currency(val.commission_total) %></td>
 					<td><%= number_to_currency(val.evo_total) %></td>
 					<td><%= number_to_currency(val.agent_total) %></td>
 					<td class="green"><%= number_to_currency(val.upline_total) %></td>
-					<% @total += val.upline_total %>
+					<% @total += BigDecimal.new(val.upline_total).round(2) %>
 					</tr>
 				<% end %>
 			<% end %>
@@ -107,19 +115,19 @@
 					<% else %>
 					<td class="red"><%= number_to_currency(val.paid_agent) %></td>
 					<% end %>
-						<% @total += val.paid_agent %>
+						<% @total += BigDecimal.new(val.paid_agent).round(2) %>
 					</tr>
 			<% end %>
 		</tbody>
 	</table>
 	<% else %>
-	<h5>No Holds Found</h5>
+	<h5>No Recalls/Holds Found</h5>
 	<% end %>
 	<div class="payout">
 		<% if @total > 0 %>
-		<h3>Payout Ammount: <span class="green"><%= number_to_currency(@total) %></span></h3>
+		<h3>Payout Ammount: <span class="green"><%= number_to_currency(@total.round(2)) %></span></h3>
 		<% else %>
-		<h3>Payout Ammount: <span class="red"><%= number_to_currency(@total) %></span></h3>
+		<h3>Payout Ammount: <span class="red"><%= number_to_currency(@total.round(2)) %></span></h3>
 		<% end %>
 		<% if !@user.processed %>
 			<a href="/users/process/<%= @user.id %>"><button class="btn btn-primary">Process</button></a>
