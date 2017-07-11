@@ -4,9 +4,10 @@ class Hold < ApplicationRecord
 	  header = spreadsheet.row(1)
 		(2..spreadsheet.last_row).each do |i|
 			row = Hash[[header, spreadsheet.row(i)].transpose]
-			hold = find_by(invoice: row["Invoice"]) || new
+			hold = find_by(key: row["key"]) || new
 			user = User.find_by(evo_id: row['evo_id'])
 			if user
+				hold.key = row['key']
 				hold.evo_id = row['evo_id']
 				hold.acct = row['acct']
 				hold.invoice = row['invoice']

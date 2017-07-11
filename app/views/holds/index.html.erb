@@ -18,6 +18,7 @@
 	<table class="table table-responsive table-striped">
 		<thead>
 			<tr>
+			<th>Key</th>
 			<th>Evolution ID</th>
 			<th>C2GO ID</th>
 			<th>Invoice</th>
@@ -33,6 +34,7 @@
 		<tbody>
 			<% @holds.each do |val| %>
 					<tr>
+					<td><%= val.key %></td>
 					<td><%= val.evo_id %></td>
 					<td><%= val.c2go %></td>
 					<td><%= val.invoice %></td>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170711232720) do
+ActiveRecord::Schema.define(version: 20170711234557) do
 
   create_table "holds", force: :cascade do |t|
     t.string   "acct"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20170711232720) do
     t.decimal  "upline",     precision: 8, scale: 4
     t.decimal  "paid_agent", precision: 8, scale: 4
     t.integer  "evo_id"
+    t.string   "key"
   end
 
   create_table "products", force: :cascade do |t|
