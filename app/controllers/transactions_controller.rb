@@ -1,4 +1,5 @@
 class TransactionsController < ApplicationController
+@@transactions = {}
 	def import
 		Transaction.import(params[:file])
 		flash[:imported] = "Commissions imported"
@@ -10,7 +11,11 @@ class TransactionsController < ApplicationController
 		redirect_to '/'
 	end
 	def index
-		@transactions = Transaction.all
+		if @@transactions.length == 0
+			@transactions = Transaction.all
+		else
+			@transactions = @@transactions
+		end
 		respond_to do |format|
 		format.html
 		format.xls {
@@ -43,5 +48,29 @@ class TransactionsController < ApplicationController
 	end
 	def international
 		@transactions = Transaction.where("country != ? or country is null", "US")
+	end
+	def key_up
+		@@transactions = Transaction.all.order(key: :desc)
+		redirect_to "/transactions"
+	end
+	def key_down
+		@@transactions = Transaction.all.order(:key)
+		redirect_to "/transactions"
+	end
+	def invoice_up
+		@@transactions = Transaction.all.order(invoice: :desc)
+		redirect_to "/transactions"
+	end
+	def invoice_down
+		@@transactions = Transaction.all.order(:invoice)
+		redirect_to "/transactions"
+	end
+	def agent_id_up
+		@@transactions = Transaction.all.order(agent_id: :desc)
+		redirect_to "/transactions"
+	end
+	def agent_id_down
+		@@transactions = Transaction.all.order(:agent_id)
+		redirect_to "/transactions"
 	end
 end

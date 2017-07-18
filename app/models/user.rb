@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 	has_many :transactions
-	def self.import(file)
+	def self.import(file, inactive)
 	  spreadsheet = Roo::Spreadsheet.open(file.path)
 	  header = spreadsheet.row(1)
 		(2..spreadsheet.last_row).each do |i|
@@ -23,6 +23,11 @@ class User < ApplicationRecord
 			if user.processed == true
 			else
 				user.processed = false
+			end
+			if inactive
+				user.active = false
+			else
+				user.active = true
 			end
 			user.save!
 		end

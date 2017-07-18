@@ -10,6 +10,20 @@
 	.red{
 		min-width: 120px;
 	}
+	th{
+		min-width: 92px;
+		padding-top: 0px;
+	}
+	th a{
+		display: block;
+	}
+	.header{
+		display: inline-block;
+	}
+	.arrows{
+		display: inline-block;
+		float: right;
+	}
 </style>
 <div class="container-fluid">
 	<div class="row btn-row">
@@ -19,12 +33,13 @@
 <table class="table table-responsive table-striped">
 	<thead>
 		<tr>
-		<th>Key</th>
-		<th>Invoice</th>
-		<th>Agent ID</th>
+		<th><span class="head">Key</span><span class="arrows"><a href="/key/up"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a><a href="/key/down"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></span></th>
+		<th><span class="head">Invoice</span><span class="arrows"><a href="/invoice/up"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a><a href="/invoice/down"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></span></th>
+		<th><span class="head">Agent ID</span><span class="arrows"><a href="/agent_id/up"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a><a href="/agent_id/down"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></span></th>
 		<th>C2GO ID</th>
 		<th>Issue Date</th>
 		<th>Itinerary</th>
+		<th>Active Agent</th>
 		<th>Agent Name</th>
 		<th>Upline ID</th>
 		<th>Upline Name</th>
@@ -50,6 +65,7 @@
 				<td></td>
 				<% end %>
 				<td><%= val.itinerary %></td>
+				<td><%= @user.active %></td>
 				<td><a href="/users/<%= @user.id %>"><%= @user.first %> <%= @user.last %></a></td>
 				<td><%= val.upline_id %></td>
 				<% @upline = User.find_by(evo_id: val.upline_id) %>

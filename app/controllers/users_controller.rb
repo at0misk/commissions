@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
 	def import
-		User.import(params[:file])
+		if params['inactive']
+			User.import(params[:file], true)
+		else
+			User.import(params[:file], false)
+		end
 		redirect_to '/'
 		flash[:imported] = "Users Imported"
 	end
