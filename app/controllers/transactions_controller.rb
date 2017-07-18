@@ -22,9 +22,17 @@ class TransactionsController < ApplicationController
 		end 
 		# format.xls { send_data(@transactions.to_xls) }
 	end
-	def download
+	def create
 		@transactions = Transaction.all
 		  respond_to do |format|
+		  	@transactions.to_a.each do |val|
+		  		@u = User.find_by(evo_id: val.agent_id)
+		  		if @u.processed
+					val.processed = true
+				else
+					val.processed = false
+				end
+			end
 		    # format.html # don't forget if you pass html
 		    format.xls { send_data(@transactions.to_a.to_xls) }
 		    # format.xls {
