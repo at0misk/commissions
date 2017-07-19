@@ -73,4 +73,76 @@ class TransactionsController < ApplicationController
 		@@transactions = Transaction.all.order(:agent_id)
 		redirect_to "/transactions"
 	end
+	def issue_date_up
+		@@transactions = Transaction.all.order(issue_date: :desc)
+		redirect_to "/transactions"
+	end
+	def issue_date_down
+		@@transactions = Transaction.all.order(:issue_date)
+		redirect_to "/transactions"
+	end
+	def itinerary_up
+		@@transactions = Transaction.all.order(itinerary: :desc)
+		redirect_to "/transactions"
+	end
+	def itinerary_down
+		@@transactions = Transaction.all.order(:itinerary)
+		redirect_to "/transactions"
+	end
+	def commission_total_up
+		@@transactions = Transaction.all.order(commission_total: :desc)
+		redirect_to "/transactions"
+	end
+	def commission_total_down
+		@@transactions = Transaction.all.order(:commission_total)
+		redirect_to "/transactions"
+	end
+	def agent_total_up
+		@@transactions = Transaction.all.order(agent_total: :desc)
+		redirect_to "/transactions"
+	end
+	def agent_total_down
+		@@transactions = Transaction.all.order(:agent_total)
+		redirect_to "/transactions"
+	end
+	def upline_total_up
+		@@transactions = Transaction.all.order(upline_total: :desc)
+		redirect_to "/transactions"
+	end
+	def upline_total_down
+		@@transactions = Transaction.all.order(:upline_total)
+		redirect_to "/transactions"
+	end
+	def evo_total_up
+		@@transactions = Transaction.all.order(upline_total: :desc)
+		redirect_to "/transactions"
+	end
+	def evo_total_down
+		@@transactions = Transaction.all.order(:upline_total)
+		redirect_to "/transactions"
+	end
+	def processed_up
+		@@transactions = Transaction.all.order(processed: :desc)
+		redirect_to "/transactions"
+	end
+	def processed_down
+		@@transactions = Transaction.all.order(:processed)
+		redirect_to "/transactions"
+	end
+	# def active_up
+	# 	@@transactions = Transaction.all.order(active: :desc)
+	# 	redirect_to "/transactions"
+	# end
+	# def active_down
+	# 	@@transactions = Transaction.all.order(:active)
+	# 	redirect_to "/transactions"
+	# end
+	# def c2go_id_up
+	# 	@@transactions = Transaction.all.order(c2go: :desc)
+	# 	redirect_to "/transactions"
+	# end
+	# def c2go_id_down
+	# 	@@transactions = Transaction.all.order(:c2go)
+	# 	redirect_to "/transactions"
+	# end
 end

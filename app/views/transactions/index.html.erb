@@ -11,7 +11,7 @@
 		min-width: 120px;
 	}
 	th{
-		min-width: 92px;
+		min-width: 101px;
 		padding-top: 0px;
 	}
 	th a{
@@ -25,29 +25,48 @@
 		display: inline-block;
 		float: right;
 	}
+	.table-header-fixed{
+		position: fixed;
+		background: white;
+	}
+	.btn-row{
+/*		position: fixed;
+		background: white;*/
+	}
+	tbody{
+		/*margin-top: 200px;*/
+	}
+	.commission-total{
+		min-width: 152px;
+	}
+	.agent-total{
+		min-width: 160px;
+	}
+	.upline-total{
+		min-width: 163px;
+	}
+	.evo-total{
+		min-width: 187px;
+	}
 </style>
 <div class="container-fluid">
-	<div class="row btn-row">
-	<%= button_to 'Excel Download', transactions_path(:format => :xls), class: 'btn btn-primary' %>
-	<a href="/transactions/destroy_all" data-confirm="Clear current chart?"><button class="btn btn-danger">Clear Currenct</button></a>
-	</div>
 <table class="table table-responsive table-striped">
 	<thead>
-		<tr>
+		<tr class="table-header">
 		<th><span class="head">Key</span><span class="arrows"><a href="/key/up"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a><a href="/key/down"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></span></th>
 		<th><span class="head">Invoice</span><span class="arrows"><a href="/invoice/up"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a><a href="/invoice/down"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></span></th>
 		<th><span class="head">Agent ID</span><span class="arrows"><a href="/agent_id/up"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a><a href="/agent_id/down"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></span></th>
-		<th>C2GO ID</th>
-		<th>Issue Date</th>
-		<th>Itinerary</th>
+		<th>C2GO</th>
+		<th><span class="head">Issue Date</span><span class="arrows"><a href="/issue_date/up"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a><a href="/issue_date/down"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></span></th>
+		<th><span class="head">Itinerary</span><span class="arrows"><a href="/itinerary/up"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a><a href="/itinerary/down"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></span></th>
 		<th>Active Agent</th>
 		<th>Agent Name</th>
 		<th>Upline ID</th>
 		<th>Upline Name</th>
-		<th>Commission Total</th>
-		<th>Agent Commission</th>
-		<th>Upline Commission</th>
-		<th>Evolution Commission</th>
+		<th class="commission-total"><span class="head">Commission Total</span><span class="arrows"><a href="/commission_total/up"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a><a href="/commission_total/down"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></span></th>
+		<th class="agent-total"><span class="head">Agent Commission</span><span class="arrows"><a href="/agent_total/up"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a><a href="/agent_total/down"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></span></th>
+		<th class="upline-total"><span class="head">Upline Commission</span><span class="arrows"><a href="/upline_total/up"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a><a href="/upline_total/down"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></span></th>
+		<th class="evo-total"><span class="head">Evolution Commission</span><span class="arrows"><a href="/evo_total/up"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a><a href="/evo_total/down"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></span></th>
 		<th>Processed</th>
 		</tr>
 	</thead>
