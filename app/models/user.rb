@@ -19,7 +19,7 @@ class User < ApplicationRecord
 			user.zip = row['Zip']
 			user.country = row['Country']
 			user.phone = row['Cellular']
-			user.email = row['email']
+			user.email = row['Email']
 			if user.processed == true
 			else
 				user.processed = false
