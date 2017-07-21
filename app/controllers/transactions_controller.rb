@@ -48,6 +48,7 @@ class TransactionsController < ApplicationController
 		  respond_to do |format|
 		  	@transactions.to_a.each do |val|
 		  		@u = User.find_by(evo_id: val.agent_id)
+		  		val.agent_name = @u.first + " " + @u.last
 		  		if @u.processed
 					val.processed = true
 				else
