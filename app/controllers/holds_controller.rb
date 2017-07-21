@@ -12,4 +12,21 @@ class HoldsController < ApplicationController
 		flash[:imported] = "Holds cleared"
 		redirect_to '/'
 	end
+	def create
+		@holds = Hold.all
+		  respond_to do |format|
+		  	@holds.to_a.each do |val|
+		  		@u = User.find_by(evo_id: val.agent_id)
+		  		val.name = @u.first + " " + @u.last
+		  		val.email = @u.email
+				val.c2go = @u.c2go
+			end
+		    # format.html # don't forget if you pass html
+		    format.xls { send_data(@transactions.to_a.to_xls) }
+		    # format.xls {
+		    #   filename = "Posts-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls"
+		    #   send_data(@posts.to_xls, :type => "text/xls; charset=utf-8; header=present", :filename => filename)
+		    # }
+		  end
+	end
 end

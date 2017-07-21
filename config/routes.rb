@@ -8,6 +8,9 @@ get '/transactions/destroy_all' => 'transactions#destroy_all'
 resources :transactions do
   collection { post :import }
 end
+resources :holds do
+  collection { post :import }
+end
 post '/transactions/import' => 'transactions#import'
 post '/holds/import' => 'holds#import'
 get '/transactions' => 'transactions#index'
