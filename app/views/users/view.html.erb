@@ -22,7 +22,7 @@
 		<div class="col-sm-12 header-col">
 			<h2><%= @user.first %> <%= @user.last %></h2>
 			<h3>Evo ID: <%= @user.evo_id %></h3>
-			<h3>Upline: <a href="users/<%= @upline_user.id %>"><%= @upline_user.first %> <%= @upline_user.last %></a></h3>
+			<h3>Upline: <a href="/users/<%= @upline_user.id %>"><%= @upline_user.first %> <%= @upline_user.last %></a></h3>
  			<% if @user.c2go %>
 				<h3>C2GO ID: <%= @user.c2go %></h3>
 			<% end %>
