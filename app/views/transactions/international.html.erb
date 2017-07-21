@@ -19,6 +19,7 @@
 <table class="table table-responsive table-striped">
 	<thead>
 		<tr>
+		<th>ID</th>
 		<th>Invoice</th>
 		<th>Agent ID</th>
 		<th>C2GO ID</th>
@@ -37,6 +38,7 @@
 		<% @transactions.each do |val| %>
 			<%# if val.commission_total != 0 %>
 				<tr>
+				<td><%= val.id %>
 				<td><%= val.invoice %></td>
 				<td><%= val.agent_id %></td>
 				<% @user = User.find_by(evo_id: val.agent_id) %>
