@@ -12,6 +12,7 @@ class TransactionsController < ApplicationController
 		redirect_to '/'
 	end
 	def index
+		session[:page] = 'all'
 		if @@transactions.length == 0
 			@transactions = Transaction.all
 		else
@@ -39,7 +40,11 @@ class TransactionsController < ApplicationController
 		# format.xls { send_data(@transactions.to_xls) }
 	end
 	def create
-		@transactions = Transaction.all
+		if session[:page] == 'int'
+			@transactions = Transaction.where("country != ? or country is null", "US")
+		else
+			@transactions = Transaction.all
+		end
 		  respond_to do |format|
 		  	@transactions.to_a.each do |val|
 		  		@u = User.find_by(evo_id: val.agent_id)
@@ -47,6 +52,9 @@ class TransactionsController < ApplicationController
 					val.processed = true
 				else
 					val.processed = false
+				end
+				if session[:page] == 'int'
+					val.c2go = "International"
 				end
 			end
 		    # format.html # don't forget if you pass html
