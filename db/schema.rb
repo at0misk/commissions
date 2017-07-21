@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170718230122) do
+ActiveRecord::Schema.define(version: 20170721211042) do
 
   create_table "holds", force: :cascade do |t|
     t.string   "acct"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20170718230122) do
     t.date     "issue_date"
     t.string   "key"
     t.boolean  "processed"
+    t.string   "c2go"
     t.index ["agent_id"], name: "index_transactions_on_agent_id"
     t.index ["upline_id"], name: "index_transactions_on_upline_id"
   end
