@@ -55,6 +55,8 @@ class TransactionsController < ApplicationController
 				end
 				if session[:page] == 'int'
 					val.c2go = "International"
+				else
+					val.c2go = @u.c2go
 				end
 			end
 		    # format.html # don't forget if you pass html
