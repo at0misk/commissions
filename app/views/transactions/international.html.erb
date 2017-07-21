@@ -35,7 +35,7 @@
 	</thead>
 	<tbody>
 		<% @transactions.each do |val| %>
-			<% if val.commission_total != 0 %>
+			<%# if val.commission_total != 0 %>
 				<tr>
 				<td><%= val.invoice %></td>
 				<td><%= val.agent_id %></td>
@@ -61,7 +61,7 @@
 				<% end %>
 				</tr>
 				</tr>
-			<% end %>
+			<%# end %>
 		<% end %>
 	</tbody>
 </table>
