@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 		@upline_holds_pending = Hold.where(evo_id: @upline_user.evo_id) if @upline_user
 	end
 	def international
+		session[:page] = 'int'
 		@users = User.where("country != ? or country is null", "US")
 	end
 	def process_user

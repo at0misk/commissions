@@ -58,7 +58,6 @@ class TransactionsController < ApplicationController
 		  end
 	end
 	def international
-		session[:page] = 'int'
 		@transactions = Transaction.where("country != ? or country is null", "US")
 	end
 	def key_up
