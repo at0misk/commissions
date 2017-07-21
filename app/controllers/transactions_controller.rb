@@ -31,6 +31,7 @@ class TransactionsController < ApplicationController
 					val.commission_total = val.commission_total.to_s
 				end
 			end
+			session[:page] = 'all'
 			send_data(@transactions.to_a.to_xls) 
 		}
 		end 
