@@ -12,7 +12,6 @@ class TransactionsController < ApplicationController
 		redirect_to '/'
 	end
 	def index
-		session[:page] = 'all'
 		if @@transactions.length == 0
 			@transactions = Transaction.all
 		else
@@ -21,16 +20,15 @@ class TransactionsController < ApplicationController
 		respond_to do |format|
 		format.html
 		format.xls {
-			if session[:page] == 'all'
-				@transactions.to_a.each do |val|
-					val.commission_total = val.commission_total.to_s
-				end
-				send_data(@transactions.to_a.to_xls) 
-			elsif session[:page] == 'int'
+			if session[:page] == 'int'
 					@transactions = Transaction.where("country != ? or country is null", "US")
 				@transactions.to_a.each do |val|
 					val.commission_total = val.commission_total.to_s
 					val.c2go = "INTERNATIONAL"
+				end
+			else
+				@transactions.to_a.each do |val|
+					val.commission_total = val.commission_total.to_s
 				end
 			end
 			send_data(@transactions.to_a.to_xls) 
