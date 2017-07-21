@@ -12,7 +12,6 @@
 	}
 </style>
 <div class="container-fluid">
-<%= console %>
 	<div class="row btn-row">
 	<%= button_to 'Excel Download', transactions_path(:format => :xls), class: 'btn btn-primary' %>
 	<a href="/transactions/destroy_all" data-confirm="Clear current chart?"><button class="btn btn-danger">Clear Currenct</button></a>
