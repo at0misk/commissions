@@ -22,7 +22,7 @@ class HoldsController < ApplicationController
 				val.c2go = @u.c2go
 			end
 		    # format.html # don't forget if you pass html
-		    format.xls { send_data(@transactions.to_a.to_xls) }
+		    format.xls { send_data(@holds.to_a.to_xls) }
 		    # format.xls {
 		    #   filename = "Posts-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls"
 		    #   send_data(@posts.to_xls, :type => "text/xls; charset=utf-8; header=present", :filename => filename)
