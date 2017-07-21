@@ -16,7 +16,7 @@ class HoldsController < ApplicationController
 		@holds = Hold.all
 		  respond_to do |format|
 		  	@holds.to_a.each do |val|
-		  		@u = User.find_by(evo_id: val.agent_id)
+		  		@u = User.find_by(evo_id: val.evo_id)
 		  		val.name = @u.first + " " + @u.last
 		  		val.email = @u.email
 				val.c2go = @u.c2go
