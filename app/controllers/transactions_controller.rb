@@ -21,8 +21,7 @@ class TransactionsController < ApplicationController
 		format.html
 		format.xls {
 			if session[:page] == 'int'
-				fail
-					@transactions = Transaction.where("country != ? or country is null", "US")
+				@transactions = Transaction.where("country != ? or country is null", "US")
 				@transactions.to_a.each do |val|
 					val.commission_total = val.commission_total.to_s
 					val.c2go = "INTERNATIONAL"
@@ -32,7 +31,7 @@ class TransactionsController < ApplicationController
 					val.commission_total = val.commission_total.to_s
 				end
 			end
-			session[:page] = 'all'
+			# session[:page] = 'all'
 			send_data(@transactions.to_a.to_xls) 
 		}
 		end 
