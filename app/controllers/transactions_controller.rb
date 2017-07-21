@@ -32,7 +32,8 @@ class TransactionsController < ApplicationController
 					val.commission_total = val.commission_total.to_s
 					val.c2go = "INTERNATIONAL"
 				end
-				send_data(@transactions.to_a.to_xls) 
+			end
+			send_data(@transactions.to_a.to_xls) 
 		}
 		end 
 		# format.xls { send_data(@transactions.to_xls) }
