@@ -12,31 +12,35 @@ class TransactionsController < ApplicationController
 		redirect_to '/'
 	end
 	def index
-		session[:page] = 'all'
-		if @@transactions.length == 0
-			@transactions = Transaction.all
-		else
+		if flash[:uplines]
 			@transactions = @@transactions
-		end
-		respond_to do |format|
-		format.html
-		format.xls {
-			if session[:page] == 'int'
-				@transactions = Transaction.where("country != ? or country is null", "US")
-				@transactions.to_a.each do |val|
-					val.commission_total = val.commission_total.to_s
-					val.c2go = "INTERNATIONAL"
-				end
+		else
+			session[:page] = 'all'
+			if @@transactions.length == 0
+				@transactions = Transaction.all
 			else
-				@transactions.to_a.each do |val|
-					fail
-					val.commission_total = val.commission_total.to_s
-				end
+				@transactions = @@transactions
 			end
-			# session[:page] = 'all'
-			send_data(@transactions.to_a.to_xls) 
-		}
-		end 
+			respond_to do |format|
+			format.html
+			format.xls {
+				if session[:page] == 'int'
+					@transactions = Transaction.where("country != ? or country is null", "US")
+					@transactions.to_a.each do |val|
+						val.commission_total = val.commission_total.to_s
+						val.c2go = "INTERNATIONAL"
+					end
+				else
+					@transactions.to_a.each do |val|
+						fail
+						val.commission_total = val.commission_total.to_s
+					end
+				end
+				# session[:page] = 'all'
+				send_data(@transactions.to_a.to_xls) 
+			}
+			end 
+		end
 		# format.xls { send_data(@transactions.to_xls) }
 	end
 	def create
@@ -168,4 +172,16 @@ class TransactionsController < ApplicationController
 	# 	@@transactions = Transaction.all.order(:c2go)
 	# 	redirect_to "/transactions"
 	# end
+	def create_upline_transactions
+		@@transactions = []
+		@users = User.all
+			@users.each do |val_user|
+				@transactions = Transaction.where("upline_id = ? AND agent_id != ?", "#{val_user.id}", "#{val_user.id}")
+				@transactions.each do |val_transaction|
+					@@transactions << val_transaction
+				end
+			end
+		flash[:uplines] = true
+		redirect_to "/transactions"
+	end
 end

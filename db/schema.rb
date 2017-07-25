@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170721222713) do
+ActiveRecord::Schema.define(version: 20170725221307) do
 
   create_table "holds", force: :cascade do |t|
     t.string   "acct"
@@ -65,6 +65,27 @@ ActiveRecord::Schema.define(version: 20170721222713) do
     t.string   "agent_name"
     t.index ["agent_id"], name: "index_transactions_on_agent_id"
     t.index ["upline_id"], name: "index_transactions_on_upline_id"
+  end
+
+  create_table "upline_transactions", force: :cascade do |t|
+    t.integer  "agent_id"
+    t.integer  "upline_id"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.string   "agent_name"
+    t.string   "c2go"
+    t.boolean  "processed"
+    t.string   "key"
+    t.date     "issue_date"
+    t.string   "traveler"
+    t.string   "itinerary"
+    t.string   "country"
+    t.decimal  "agent_total",  precision: 8, scale: 4
+    t.decimal  "upline_total", precision: 8, scale: 4
+    t.decimal  "evo_total",    precision: 8, scale: 4
+    t.integer  "invoice"
+    t.index ["agent_id"], name: "index_upline_transactions_on_agent_id"
+    t.index ["upline_id"], name: "index_upline_transactions_on_upline_id"
   end
 
   create_table "users", force: :cascade do |t|

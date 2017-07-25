@@ -76,7 +76,7 @@
 	</thead>
 	<tbody>
 		<% @transactions.each do |val| %>
-			<% if val.commission_total != 0 %>
+			<%# if val.commission_total != 0 %>
 				<tr>
 				<% @user = User.find_by(evo_id: val.agent_id) %>
 				<td><%= val.key %></td>
@@ -90,11 +90,19 @@
 				<% end %>
 				<td><%= val.itinerary %></td>
 				<td><%= @user.active %></td>
-				<td><a href="/users/<%= @user.id %>"><%= @user.first %> <%= @user.last %></a></td>
+				<% if flash[:uplines] %>
+					<td><%= @user.first %> <%= @user.last %></a></td>
+				<% else %>
+					<td><a href="/users/<%= @user.id %>"><%= @user.first %> <%= @user.last %></a></td>
+				<% end %>
 				<td><%= val.upline_id %></td>
 				<% @upline = User.find_by(evo_id: val.upline_id) %>
 				<% if @upline %>
-				<td><%= @upline.first %> <%= @upline.last %></td>
+					<% if flash[:uplines] %>
+						<td><a href="/users/<%= @upline.id %>"><%= @upline.first %> <%= @upline.last %></td>
+					<% else %>
+						<td><%= @upline.first %> <%= @upline.last %></td>
+					<% end %>
 				<% else %>
 				<td></td>
 				<% end %>
@@ -108,7 +116,7 @@
 					<td class="red">Not Processed</td>
 				<% end %>
 				</tr>
-			<% end %>
+			<%# end %>
 		<% end %>
 	</tbody>
 </table>
