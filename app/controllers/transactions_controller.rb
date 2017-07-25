@@ -12,15 +12,14 @@ class TransactionsController < ApplicationController
 		redirect_to '/'
 	end
 	def index
-		if flash[:uplines]
-			@transactions = @@transactions
-		else
-			session[:page] = 'all'
-			if @@transactions.length == 0
+			if session[:page] == "upline"
+				@transactions = @@transactions
+			elsif @@transactions.length == 0
 				@transactions = Transaction.all
 			else
 				@transactions = @@transactions
 			end
+			session[:page] = 'all'
 			respond_to do |format|
 			format.html
 			format.xls {
@@ -40,7 +39,6 @@ class TransactionsController < ApplicationController
 				send_data(@transactions.to_a.to_xls) 
 			}
 			end 
-		end
 		# format.xls { send_data(@transactions.to_xls) }
 	end
 	def create
@@ -187,6 +185,7 @@ class TransactionsController < ApplicationController
 				end
 			end
 		flash[:uplines] = true
+		session[:page] = "upline"
 		redirect_to "/transactions"
 	end
 end
