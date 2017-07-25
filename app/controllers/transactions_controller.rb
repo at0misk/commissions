@@ -47,11 +47,16 @@ class TransactionsController < ApplicationController
 		if session[:page] == 'int'
 			@transactions = Transaction.where("country != ? or country is null", "US")
 		else
-			@transactions = Transaction.all
+			@transactions = @@transactions
 		end
 		  respond_to do |format|
 		  	@transactions.to_a.each do |val|
 		  		@u = User.find_by(evo_id: val.agent_id)
+		  		@upline = User.find_by(evo_id: val.upline_id)
+		  		if @upline
+			  		val.sponsor_c2go = @upline.c2go
+			  		val.sponsor_name = @upline.first + " " + @upline.last
+			  	end
 		  		val.agent_name = @u.first + " " + @u.last
 		  		if @u.processed
 					val.processed = true
