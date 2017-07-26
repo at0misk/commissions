@@ -12,12 +12,10 @@ class TransactionsController < ApplicationController
 		redirect_to '/'
 	end
 	def index
-			if session[:page] == "upline"
+			if session[:page] == "upline" || session[:page] == "order" || session[:page] == "int"
 				@transactions = @@transactions
-			elsif @@transactions.length == 0
-				@transactions = Transaction.all
 			else
-				@transactions = @@transactions
+				@transactions = Transaction.all
 			end
 			session[:page] = 'all'
 			respond_to do |format|
@@ -80,82 +78,102 @@ class TransactionsController < ApplicationController
 		@transactions = Transaction.where("country != ? or country is null", "US")
 	end
 	def key_up
+		session[:page] = 'order'
 		@@transactions = Transaction.all.order(key: :desc)
 		redirect_to "/transactions"
 	end
 	def key_down
+		session[:page] = 'order'
 		@@transactions = Transaction.all.order(:key)
 		redirect_to "/transactions"
 	end
 	def invoice_up
+		session[:page] = 'order'
 		@@transactions = Transaction.all.order(invoice: :desc)
 		redirect_to "/transactions"
 	end
 	def invoice_down
+		session[:page] = 'order'
 		@@transactions = Transaction.all.order(:invoice)
 		redirect_to "/transactions"
 	end
 	def agent_id_up
+		session[:page] = 'order'
 		@@transactions = Transaction.all.order(agent_id: :desc)
 		redirect_to "/transactions"
 	end
 	def agent_id_down
+		session[:page] = 'order'
 		@@transactions = Transaction.all.order(:agent_id)
 		redirect_to "/transactions"
 	end
 	def issue_date_up
+		session[:page] = 'order'
 		@@transactions = Transaction.all.order(issue_date: :desc)
 		redirect_to "/transactions"
 	end
 	def issue_date_down
+		session[:page] = 'order'
 		@@transactions = Transaction.all.order(:issue_date)
 		redirect_to "/transactions"
 	end
 	def itinerary_up
+		session[:page] = 'order'
 		@@transactions = Transaction.all.order(itinerary: :desc)
 		redirect_to "/transactions"
 	end
 	def itinerary_down
+		session[:page] = 'order'
 		@@transactions = Transaction.all.order(:itinerary)
 		redirect_to "/transactions"
 	end
 	def commission_total_up
+		session[:page] = 'order'
 		@@transactions = Transaction.all.order(commission_total: :desc)
 		redirect_to "/transactions"
 	end
 	def commission_total_down
+		session[:page] = 'order'
 		@@transactions = Transaction.all.order(:commission_total)
 		redirect_to "/transactions"
 	end
 	def agent_total_up
+		session[:page] = 'order'
 		@@transactions = Transaction.all.order(agent_total: :desc)
 		redirect_to "/transactions"
 	end
 	def agent_total_down
+		session[:page] = 'order'
 		@@transactions = Transaction.all.order(:agent_total)
 		redirect_to "/transactions"
 	end
 	def upline_total_up
+		session[:page] = 'order'
 		@@transactions = Transaction.all.order(upline_total: :desc)
 		redirect_to "/transactions"
 	end
 	def upline_total_down
+		session[:page] = 'order'
 		@@transactions = Transaction.all.order(:upline_total)
 		redirect_to "/transactions"
 	end
 	def evo_total_up
+		session[:page] = 'order'
 		@@transactions = Transaction.all.order(upline_total: :desc)
 		redirect_to "/transactions"
 	end
 	def evo_total_down
+		session[:page] = 'order'
 		@@transactions = Transaction.all.order(:upline_total)
 		redirect_to "/transactions"
 	end
 	def processed_up
+		session[:page] = 'order'
 		@@transactions = Transaction.all.order(processed: :desc)
 		redirect_to "/transactions"
 	end
 	def processed_down
+		session[:page] = 'order'
 		@@transactions = Transaction.all.order(:processed)
 		redirect_to "/transactions"
 	end
