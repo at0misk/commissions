@@ -45,7 +45,7 @@ class TransactionsController < ApplicationController
 		elsif session[:page] == "upline" || session[:page] == "order" 
 			@transactions = @@transactions
 		elsif session[:page] == 'all'
-			@transaction = Transaction.all
+			@transactions = Transaction.all
 		end
 		  respond_to do |format|
 		  	@transactions.to_a.each do |val|
