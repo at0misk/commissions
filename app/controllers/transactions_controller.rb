@@ -16,8 +16,8 @@ class TransactionsController < ApplicationController
 				@transactions = @@transactions
 			else
 				@transactions = Transaction.all
+				session[:page] = 'all'
 			end
-			session[:page] = 'all'
 			respond_to do |format|
 			format.html
 			format.xls {
