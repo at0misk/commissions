@@ -42,8 +42,10 @@ class TransactionsController < ApplicationController
 	def create
 		if session[:page] == 'int'
 			@transactions = Transaction.where("country != ? or country is null", "US")
-		else
+		elsif session[:page] == "upline" || session[:page] == "order" 
 			@transactions = @@transactions
+		elsif session[:page] == 'all'
+			@transaction = Transaction.all
 		end
 		  respond_to do |format|
 		  	@transactions.to_a.each do |val|
