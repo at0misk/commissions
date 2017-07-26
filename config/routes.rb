@@ -8,18 +8,18 @@ get '/transactions/destroy_all' => 'transactions#destroy_all'
 resources :transactions do
   collection { post :import }
 end
+get '/holds/destroy_all' => 'holds#destroy_all'
+post '/holds/import' => 'holds#import'
 resources :holds do
   collection { post :import }
 end
 post '/transactions/import' => 'transactions#import'
-post '/holds/import' => 'holds#import'
 get '/transactions' => 'transactions#index'
 get '/users/process/:id' => 'users#process_user'
 get '/users/unprocess/:id' => 'users#unprocess_user'
 post '/users/search'
 get '/users/:id' => 'users#view'
 get '/holds' => 'holds#index'
-get '/holds/destroy_all' => 'holds#destroy_all'
 get '/international' => 'transactions#international'
 get '/key/up' => 'transactions#key_up'
 get '/key/down' => 'transactions#key_down'
