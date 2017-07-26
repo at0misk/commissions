@@ -14,6 +14,7 @@ class TransactionsController < ApplicationController
 	def index
 			if session[:page] == "upline" || session[:page] == "order" || session[:page] == "int"
 				@transactions = @@transactions
+				session[:page] = nil
 			else
 				@transactions = Transaction.all
 				session[:page] = 'all'
