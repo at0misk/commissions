@@ -15,6 +15,7 @@ class TransactionsController < ApplicationController
 			if session[:page] == "upline" || session[:page] == "order" || session[:page] == "int"
 				@transactions = @@transactions
 				session[:page] = nil
+				flash[:filtered] = true
 			else
 				@transactions = Transaction.all
 				session[:page] = 'all'
@@ -43,7 +44,7 @@ class TransactionsController < ApplicationController
 	def create
 		if session[:page] == 'int'
 			@transactions = Transaction.where("country != ? or country is null", "US")
-		elsif session[:page] == "upline" || session[:page] == "order" 
+		elsif flash[:filtered]
 			@transactions = @@transactions
 		elsif session[:page] == 'all'
 			@transactions = Transaction.all
