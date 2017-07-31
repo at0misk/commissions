@@ -21,6 +21,9 @@ class Transaction < ApplicationRecord
 				transaction.traveler = row['traveler']
 				transaction.itinerary = row['itinerary']
 				transaction.issue_date = row['issue_date']
+				transaction.depart_date = row['dep_date']
+				transaction.return_date = row['ret_date']
+				transaction.ticket_num = row['ticket_id']
 				transaction.save!
 			end
 		end
