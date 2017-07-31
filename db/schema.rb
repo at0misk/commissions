@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170725233242) do
+ActiveRecord::Schema.define(version: 20170731182351) do
 
   create_table "holds", force: :cascade do |t|
     t.string   "acct"
@@ -65,6 +65,9 @@ ActiveRecord::Schema.define(version: 20170725233242) do
     t.string   "agent_name"
     t.string   "sponsor_c2go"
     t.string   "sponsor_name"
+    t.string   "depart_date"
+    t.string   "return_date"
+    t.string   "ticket_num"
     t.index ["agent_id"], name: "index_transactions_on_agent_id"
     t.index ["upline_id"], name: "index_transactions_on_upline_id"
   end
