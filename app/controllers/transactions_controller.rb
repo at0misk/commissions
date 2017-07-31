@@ -68,9 +68,6 @@ class TransactionsController < ApplicationController
 				else
 					val.c2go = @u.c2go
 				end
-				val.depart_date = @u.dep_date
-				val.return_date = @u.ret_date
-				val.ticket_num = @u.ticket_id
 			end
 		    # format.html # don't forget if you pass html
 		    format.xls { send_data(@transactions.to_a.to_xls) }
