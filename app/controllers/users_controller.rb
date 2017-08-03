@@ -58,4 +58,30 @@ class UsersController < ApplicationController
 			redirect_to "/transactions" and return
 		end
 	end
+	def users_download
+	end
+	def create
+		respond_to do |format|
+			format.html
+			format.xls {
+					@users = User.all.select("evo_id, c2go, first, last, agent_total, evo_total")
+					@ret_arr = []
+					@users.to_a.each do |val|
+						@commissions = Transaction.where(agent_id: val.evo_id)
+						@total = BigDecimal.new("0")
+						@evo_total = BigDecimal.new("0")
+						@upline_total = BigDecimal.new("0")
+						@commissions.each do |com_val|
+							@total += BigDecimal.new(com_val.agent_total).round(2)
+							@evo_total += BigDecimal.new(com_val.evo_total).round(2)
+						end
+						val.agent_total = @total
+						val.evo_total = @evo_total
+					end
+					@users.order(agent_total: :desc)
+				# session[:page] = 'all'
+				send_data(@users.to_a.to_xls) 
+			}
+		end 
+	end
 end

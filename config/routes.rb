@@ -13,12 +13,17 @@ post '/holds/import' => 'holds#import'
 resources :holds do
   collection { post :import }
 end
+
+resources :users do
+  collection { post :import }
+end
 post '/transactions/import' => 'transactions#import'
 get '/transactions' => 'transactions#index'
 # get '/users/process/:id' => 'users#process_user'
 get '/users/unprocess/:id' => 'users#unprocess_user'
 post '/users/search'
 post '/users/process' => 'users#process_user'
+get '/users_download' => 'users#users_download'
 get '/users/:id' => 'users#view'
 get '/holds' => 'holds#index'
 get '/international' => 'transactions#international'

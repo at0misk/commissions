@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170731182351) do
+ActiveRecord::Schema.define(version: 20170803214003) do
 
   create_table "holds", force: :cascade do |t|
     t.string   "acct"
@@ -120,6 +120,9 @@ ActiveRecord::Schema.define(version: 20170731182351) do
     t.string   "email"
     t.boolean  "processed"
     t.boolean  "active"
+    t.decimal  "agent_total",  precision: 8, scale: 2
+    t.decimal  "upline_total", precision: 8, scale: 2
+    t.decimal  "evo_total",    precision: 8, scale: 2
   end
 
 end
