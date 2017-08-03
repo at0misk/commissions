@@ -13,10 +13,6 @@ post '/holds/import' => 'holds#import'
 resources :holds do
   collection { post :import }
 end
-
-resources :users do
-  collection { post :import }
-end
 post '/transactions/import' => 'transactions#import'
 get '/transactions' => 'transactions#index'
 # get '/users/process/:id' => 'users#process_user'
@@ -53,4 +49,7 @@ get '/processed/up' => 'transactions#processed_up'
 get '/processed/down' => 'transactions#processed_down'
 get '/make_upline_transactions' => 'transactions#create_upline_transactions'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :users do
+  collection { post :import }
+end
 end
