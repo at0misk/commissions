@@ -75,6 +75,10 @@ class UsersController < ApplicationController
 							@total += BigDecimal.new(com_val.agent_total).round(2)
 							@evo_total += BigDecimal.new(com_val.evo_total).round(2)
 						end
+						@upline_commissions = Transaction.where(upline_id: val.evo_id)
+						@upline_commissions.each do |com_val|
+							@total += BigDecimal.new(com_val.upline_total).round(2)
+						end
 						val.agent_total = @total
 						val.evo_total = @evo_total
 					end
