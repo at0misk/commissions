@@ -97,6 +97,7 @@
 	<table class="table table-responsive table-striped">
 		<thead>
 			<tr>
+			<th>Retain</th>
 			<th>Invoice</th>
 			<th>Traveler</th>
 			<th>Itinerary</th>
@@ -109,6 +110,7 @@
 		<tbody>
 			<% @holds_pending.each do |val| %>
 					<tr>
+					<td><input type="checkbox" class="retain_check" value="<%= val.id %>"></td>
 					<td><%= val.invoice %></td>
 					<td><%= val.traveler %></td>
 					<td><%= val.itinerary %></td>
@@ -135,10 +137,34 @@
 		<h3>Payout Ammount: <span class="red"><%= number_to_currency(@total.round(2)) %></span></h3>
 		<% end %>
 		<% if !@user.processed %>
-			<a href="/users/process/<%= @user.id %>" data-confirm="Mark as processed?"><button class="btn btn-primary">Process</button></a>
+			<form action="/users/process" accept-charset="UTF-8" method="post" class="form-vertical">
+			<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+			<input name="retain_ids" type="hidden" id="retain_ids">
+			<input name="user_id" type="hidden" value="<%= @user.id %>">
+				<button class="btn btn-primary" data-confirm="Process?">Process</button>
+			</form>
 		<% else %>
 			<h3 class="green">Processed</h3>
 			<a href="/users/unprocess/<%= @user.id %>" data-confirm="Mark as unprocessed?"><button class="btn btn-danger">Re-Open</button></a>
 		<% end %>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$( document ).on('turbolinks:load', function() {
+		var retain_ids_arr = [];
+		$('.retain_check').click(function(){
+			if($(this).is(':checked')){
+				console.log($(this).val());
+				retain_ids_arr.push($(this).val());
+				$('#retain_ids').val(JSON.stringify(retain_ids_arr));
+			}
+			else{
+				var i = retain_ids_arr.indexOf($(this).val());
+				retain_ids_arr.splice(i, 1);
+				$('#retain_ids').val(JSON.stringify(retain_ids_arr));
+				console.log("remove value");
+			}
+		})
+	})
+</script>

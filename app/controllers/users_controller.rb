@@ -21,7 +21,26 @@ class UsersController < ApplicationController
 		@users = User.where("country != ? or country is null", "US")
 	end
 	def process_user
-		@user = User.find(params['id'])
+		@user = User.find(params['user_id'])
+		@ret_ids_array = JSON.parse(params['retain_ids'])
+		@to_destroy = []
+		@holds = Hold.where(evo_id: @user.evo_id)
+		@holds.each do |val|
+			found = false
+			@ret_ids_array.each do |inner_val|
+				if val.id == inner_val.to_i
+					found = true
+				else
+				end
+			end
+			if found
+			else
+				@to_destroy << val
+			end
+		end
+		@to_destroy.each do |val|
+			val.destroy
+		end
 		@user.update_attribute(:processed, true)
 		redirect_to "/users/#{@user.id}"
 	end

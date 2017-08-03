@@ -15,9 +15,10 @@ resources :holds do
 end
 post '/transactions/import' => 'transactions#import'
 get '/transactions' => 'transactions#index'
-get '/users/process/:id' => 'users#process_user'
+# get '/users/process/:id' => 'users#process_user'
 get '/users/unprocess/:id' => 'users#unprocess_user'
 post '/users/search'
+post '/users/process' => 'users#process_user'
 get '/users/:id' => 'users#view'
 get '/holds' => 'holds#index'
 get '/international' => 'transactions#international'
