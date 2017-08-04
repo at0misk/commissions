@@ -63,7 +63,10 @@ class UsersController < ApplicationController
 		@retained = BigDecimal.new("0")
 		@users.each do |val|
 			if !val.active
-				@retained += val.upline_total
+				@upline_commissions = Transaction.where(upline_id: val.evo_id)
+				@upline_commissions.each do |com_val|
+					@retained += BigDecimal.new(com_val.upline_total).round(2)
+				end
 			end
 		end
 	end
