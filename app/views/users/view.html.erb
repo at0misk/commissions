@@ -28,6 +28,13 @@
 			<% end %>
 		</div>
 	</div>
+	<% if !@user.active %>
+		<div class="row">
+			<div class="col-sm-12">
+				<h3 class="red">INACTIVE</h3>
+			</div>
+		</div>
+	<% end %>
 	<h3>Pending Commission Payouts:</h3>
 	<table class="table table-responsive table-striped">
 		<thead>
