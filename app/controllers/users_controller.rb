@@ -74,7 +74,7 @@ class UsersController < ApplicationController
 		respond_to do |format|
 			format.html
 			format.xls {
-					@users = User.all.select("evo_id, c2go, first, last, agent_total, evo_total")
+					@users = User.all.select("evo_id, c2go, first, last, agent_total, evo_total, active")
 					@ret_arr = []
 					@users.to_a.each do |val|
 						@commissions = Transaction.where(agent_id: val.evo_id)
