@@ -75,9 +75,11 @@ class UsersController < ApplicationController
 							@total += BigDecimal.new(com_val.agent_total).round(2)
 							@evo_total += BigDecimal.new(com_val.evo_total).round(2)
 						end
-						@upline_commissions = Transaction.where(upline_id: val.evo_id)
-						@upline_commissions.each do |com_val|
-							@total += BigDecimal.new(com_val.upline_total).round(2)
+						if val.active
+							@upline_commissions = Transaction.where(upline_id: val.evo_id)
+							@upline_commissions.each do |com_val|
+								@total += BigDecimal.new(com_val.upline_total).round(2)
+							end
 						end
 						@holds_pending = Hold.where(evo_id: val.evo_id)
 						@holds_pending.each do |com_val|
