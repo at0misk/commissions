@@ -59,6 +59,13 @@ class UsersController < ApplicationController
 		end
 	end
 	def users_download
+		@users = User.all
+		@retained = BigDecimal.new("0")
+		@users.each do |val|
+			if !val.active
+				@retained += val.upline_total
+			end
+		end
 	end
 	def create
 		respond_to do |format|

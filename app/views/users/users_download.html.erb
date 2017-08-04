@@ -4,5 +4,14 @@
 	}
 </style>
 <div class="container-fluid">
-<%= button_to 'User Download', users_path(:format => :xls), class: 'btn btn-primary' %>
+	<div class="row">
+		<div class="col-sm-12">
+		<%= button_to 'User Download', users_path(:format => :xls), class: 'btn btn-primary' %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<h3>Retained from Inactive Uplines: <%= @retained %></h3>
+		</div>
+	</div>
 </div>
