@@ -65,41 +65,41 @@
 			<% end %>
 		</tbody>
 	</table>
-	<% if @user.active %>
-		<h3>Pending Upline Payouts:</h3>
-		<% if @upline.length > 0 %>
-		<table class="table table-responsive table-striped">
-			<thead>
-				<tr>
-				<th>Invoice</th>
-				<th>Traveler</th>
-				<th>Itinerary</th>
-				<th>Commission Total</th>
-				<th>Evolution Commission</th>
-				<th>Agent Commission</th>
-				<th>Upline Commission</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @upline.each do |val| %>
-					<% if val.commission_total != 0 %>
-						<tr>
-						<td><%= val.invoice %></td>
-						<td><%= val.traveler %></td>
-						<td><%= val.itinerary %></td>
-						<td><%= number_to_currency(val.commission_total) %></td>
-						<td><%= number_to_currency(val.evo_total) %></td>
-						<td><%= number_to_currency(val.agent_total) %></td>
-						<td class="green"><%= number_to_currency(val.upline_total) %></td>
+	<h3>Pending Upline Payouts:</h3>
+	<% if @upline.length > 0 %>
+	<table class="table table-responsive table-striped">
+		<thead>
+			<tr>
+			<th>Invoice</th>
+			<th>Traveler</th>
+			<th>Itinerary</th>
+			<th>Commission Total</th>
+			<th>Evolution Commission</th>
+			<th>Agent Commission</th>
+			<th>Upline Commission</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @upline.each do |val| %>
+				<% if val.commission_total != 0 %>
+					<tr>
+					<td><%= val.invoice %></td>
+					<td><%= val.traveler %></td>
+					<td><%= val.itinerary %></td>
+					<td><%= number_to_currency(val.commission_total) %></td>
+					<td><%= number_to_currency(val.evo_total) %></td>
+					<td><%= number_to_currency(val.agent_total) %></td>
+					<td class="green"><%= number_to_currency(val.upline_total) %></td>
+					<% if @user.active %>
 						<% @total += BigDecimal.new(val.upline_total).round(2) %>
-						</tr>
 					<% end %>
+					</tr>
 				<% end %>
-			</tbody>
-		</table>
-		<% else %>
-		<h5>No Upline Payouts Found</h5>
-		<% end %>
+			<% end %>
+		</tbody>
+	</table>
+	<% else %>
+	<h5>No Upline Payouts Found</h5>
 	<% end %>
 	<h3>Pending Recalls/Holds:</h3>
 	<% if @holds_pending.length > 0 %>
