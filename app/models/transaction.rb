@@ -24,6 +24,7 @@ class Transaction < ApplicationRecord
 				transaction.depart_date = row['dep_date']
 				transaction.return_date = row['ret_date']
 				transaction.ticket_num = row['ticket_id']
+				transaction.revenue_type = row['revenue_type']
 				transaction.save!
 			end
 		end

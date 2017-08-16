@@ -62,6 +62,7 @@
 		<th><span class="head">Agent ID</span><span class="arrows"><a href="/agent_id/up"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a><a href="/agent_id/down"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></span></th>
 		<th>C2GO</th>
 		<th><span class="head">Issue Date</span><span class="arrows"><a href="/issue_date/up"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a><a href="/issue_date/down"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></span></th>
+		<th>Revenue Type</th>
 		<th><span class="head">Itinerary</span><span class="arrows"><a href="/itinerary/up"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a><a href="/itinerary/down"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></span></th>
 		<th>Active Agent</th>
 		<th>Agent Name</th>
@@ -88,6 +89,7 @@
 				<% else %>
 				<td></td>
 				<% end %>
+				<td><%= val.revenue_type %></td>
 				<td><%= val.itinerary %></td>
 				<td><%= @user.active %></td>
 				<% if flash[:uplines] %>

@@ -41,6 +41,7 @@ class UsersController < ApplicationController
 		@to_destroy.each do |val|
 			val.destroy
 		end
+		Transaction.where(agent_id: @user.evo_id).destroy_all
 		@user.update_attribute(:processed, true)
 		redirect_to "/users/#{@user.id}"
 	end
@@ -74,7 +75,7 @@ class UsersController < ApplicationController
 		respond_to do |format|
 			format.html
 			format.xls {
-					@users = User.all.select("evo_id, c2go, first, last, agent_total, evo_total, active")
+					@users = User.all.select("evo_id, revenue_type, c2go, first, last, agent_total, evo_total, active")
 					@ret_arr = []
 					@users.to_a.each do |val|
 						@commissions = Transaction.where(agent_id: val.evo_id)
@@ -84,6 +85,7 @@ class UsersController < ApplicationController
 						@commissions.each do |com_val|
 							@total += BigDecimal.new(com_val.agent_total).round(2)
 							@evo_total += BigDecimal.new(com_val.evo_total).round(2)
+							val.revenue_type = com_val.revenue_type
 						end
 						if val.active
 							@upline_commissions = Transaction.where(upline_id: val.evo_id)

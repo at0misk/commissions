@@ -17,7 +17,7 @@ class TransactionsController < ApplicationController
 				session[:page] = nil
 				flash[:filtered] = true
 			else
-				@transactions = Transaction.all
+				@transactions = Transaction.where.not(agent_total: 0)
 				session[:page] = 'all'
 			end
 			respond_to do |format|
