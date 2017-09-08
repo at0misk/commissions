@@ -83,19 +83,19 @@ class UsersController < ApplicationController
 						@evo_total = BigDecimal.new("0")
 						@upline_total = BigDecimal.new("0")
 						@commissions.each do |com_val|
-							@total += BigDecimal.new(com_val.agent_total).round(2)
-							@evo_total += BigDecimal.new(com_val.evo_total).round(2)
-							val.revenue_type = com_val.revenue_type
+							@total += BigDecimal.new(com_val.agent_total).round(2) if com_val.agent_total
+							@evo_total += BigDecimal.new(com_val.evo_total).round(2) if com_val.evo_total
+							val.revenue_type = com_val.revenue_type if com_val.revenue_type
 						end
 						if val.active
 							@upline_commissions = Transaction.where(upline_id: val.evo_id)
 							@upline_commissions.each do |com_val|
-								@total += BigDecimal.new(com_val.upline_total).round(2)
+								@total += BigDecimal.new(com_val.upline_total).round(2) if com_val.upline_total
 							end
 						end
 						@holds_pending = Hold.where(evo_id: val.evo_id)
 						@holds_pending.each do |com_val|
-							@total += BigDecimal.new(com_val.paid_agent)
+							@total += BigDecimal.new(com_val.paid_agent) if com_val.paid_agent
 						end
 						val.agent_total = @total
 						val.evo_total = @evo_total
