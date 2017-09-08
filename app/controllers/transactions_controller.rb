@@ -57,7 +57,7 @@ class TransactionsController < ApplicationController
 			  		val.sponsor_c2go = @upline.c2go
 			  		# val.sponsor_name = @upline.first + " " + @upline.last
 			  	end
-		  		val.agent_name = @u.first + " " + @u.last
+		  		# val.agent_name = @u.first + " " + @u.last
 		  		if @u.processed
 					val.processed = true
 				else
