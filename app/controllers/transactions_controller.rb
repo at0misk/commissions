@@ -31,7 +31,6 @@ class TransactionsController < ApplicationController
 					end
 				else
 					@transactions.to_a.each do |val|
-						fail
 						val.commission_total = val.commission_total.to_s
 					end
 				end
