@@ -89,7 +89,11 @@
 					<td><%= number_to_currency(val.commission_total) %></td>
 					<td><%= number_to_currency(val.evo_total) %></td>
 					<td><%= number_to_currency(val.agent_total) %></td>
-					<td class="green"><%= number_to_currency(val.upline_total) %></td>
+					<% if val.upline_total > 0 %>
+						<td class="green"><%= number_to_currency(val.upline_total) %></td>
+					<% else %>
+						<td class="red"><%= number_to_currency(val.upline_total) %></td>
+					<% end %>
 					<% if @user.active %>
 						<% @total += BigDecimal.new(val.upline_total).round(2) %>
 					<% end %>
