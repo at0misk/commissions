@@ -199,9 +199,9 @@ class TransactionsController < ApplicationController
 	# end
 	def create_upline_transactions
 		@@transactions = []
-		@users = User.all
-			@users.each do |val_user|
-				@transactions = Transaction.where("upline_id = ?", "#{val_user.upline_id}")
+		@upline_ids = User.distinct.pluck(:upline_id)
+			@upline_ids.each do |val_user|
+				@transactions = Transaction.where("upline_id = ?", "#{val_user}")
 				@transactions.each do |val_transaction|
 					@@transactions << val_transaction
 				end
