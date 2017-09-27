@@ -201,7 +201,7 @@ class TransactionsController < ApplicationController
 		@@transactions = []
 		@users = User.all
 			@users.each do |val_user|
-				@transactions = Transaction.where("upline_id = ?", "#{val_user.id}")
+				@transactions = Transaction.where("upline_id = ?", "#{val_user.upline_id}")
 				@transactions.each do |val_transaction|
 					@@transactions << val_transaction
 				end
