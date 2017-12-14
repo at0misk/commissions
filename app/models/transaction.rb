@@ -10,6 +10,7 @@ class Transaction < ApplicationRecord
 			user = User.find_by(evo_id: row['evo_id'])
 			if user
 				transaction.key = row['key']
+				transaction.active = user.active
 				transaction.agent_id = row['evo_id']
 				transaction.upline_id = user.upline_id
 				transaction.country = user.country
