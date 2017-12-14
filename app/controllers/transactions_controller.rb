@@ -213,15 +213,15 @@ class TransactionsController < ApplicationController
 		@transactions = Transaction.all
 		@transactions.each do |val|
 			user = User.find_by(evo_id: val.agent_id)
-			@transaction.update_attribute(:active, user.active)
-			@transaction.save
+			val.update_attribute(:active, user.active)
+			val.save
 		end
-		@transactions = Transaction.all
-		@transactions.each do |val|
-			user = User.find(val.user_id)
-			@transaction.update_attribute(:active, user.active)
-			@transaction.save
-		end
+		# @transactions = Transaction.all
+		# @transactions.each do |val|
+		# 	user = User.find(val.user_id)
+		# 	@transaction.update_attribute(:active, user.active)
+		# 	@transaction.save
+		# end
 		redirect_to "/"
 	end
 end
