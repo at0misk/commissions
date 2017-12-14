@@ -48,6 +48,7 @@ get '/evo_total/down' => 'transactions#evo_total_down'
 get '/processed/up' => 'transactions#processed_up'
 get '/processed/down' => 'transactions#processed_down'
 get '/make_upline_transactions' => 'transactions#create_upline_transactions'
+get '/update_active_status' => 'transactions#update_active_status'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users do
   collection { post :import }

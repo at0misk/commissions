@@ -209,4 +209,13 @@ class TransactionsController < ApplicationController
 		session[:page] = "upline"
 		redirect_to "/transactions"
 	end
+	def update_active_status
+		@transactions = Transaction.all
+		@transaction.each do |val|
+			user = User.find(val.user_id)
+			@transaction.update_attribute(:active, user.active)
+			@transaction.save
+		end
+		redirect_to "/"
+	end
 end
