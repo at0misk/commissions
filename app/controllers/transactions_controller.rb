@@ -212,6 +212,12 @@ class TransactionsController < ApplicationController
 	def update_active_status
 		@transactions = Transaction.all
 		@transactions.each do |val|
+			user = User.find_by(evo_id: val.agent_id)
+			@transaction.update_attribute(:active, user.active)
+			@transaction.save
+		end
+		@transactions = Transaction.all
+		@transactions.each do |val|
 			user = User.find(val.user_id)
 			@transaction.update_attribute(:active, user.active)
 			@transaction.save
