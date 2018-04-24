@@ -17,9 +17,11 @@ class HoldsController < ApplicationController
 		  respond_to do |format|
 		  	@holds.to_a.each do |val|
 		  		@u = User.find_by(evo_id: val.evo_id)
-		  		val.name = @u.first + " " + @u.last
-		  		val.email = @u.email
-				val.c2go = @u.c2go
+		  		if @u
+			  		val.name = @u.first + " " + @u.last
+			  		val.email = @u.email
+					val.c2go = @u.c2go
+				end
 			end
 		    # format.html # don't forget if you pass html
 		    format.xls { send_data(@holds.to_a.to_xls) }
