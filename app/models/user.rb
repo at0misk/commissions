@@ -10,7 +10,7 @@ class User < ApplicationRecord
 			user.upline_id = row['SponsorID']
 			user.first = row['FirstName']
 			user.last = row['LastName']
-			user.c2go = row['C2GONUMBER']
+			user.c2go = row['C2GONumber']
 			user.web_name = row['WebRepName']
 			user.address = row['Address']
 			user.apt = row['Apt']
