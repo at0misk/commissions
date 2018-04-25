@@ -17,9 +17,13 @@ class HoldsController < ApplicationController
 		  respond_to do |format|
 		  	@holds.to_a.each do |val|
 		  		@u = User.find_by(evo_id: val.evo_id)
-		  		if @u
+		  		if @u.first && @u.last
 			  		val.name = @u.first + " " + @u.last
+			  	end
+			  	if @u.email
 			  		val.email = @u.email
+			  	end
+			  	if @u.c2go
 					val.c2go = @u.c2go
 				end
 			end
