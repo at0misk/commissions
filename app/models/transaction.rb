@@ -14,10 +14,12 @@ class Transaction < ApplicationRecord
 				transaction.agent_id = row['evo_id']
 				transaction.upline_id = user.upline_id
 				transaction.country = user.country
-				transaction.agent_total = (row['commission_total']*0.8).round(2)
-				transaction.upline_total = (row['commission_total']*0.1).round(2)
-				transaction.evo_total = (row['commission_total']*0.1).round(2)
-				transaction.commission_total = row['commission_total']
+				if row['commission_total']
+					transaction.agent_total = (row['commission_total']*0.8).round(2)
+					transaction.upline_total = (row['commission_total']*0.1).round(2)
+					transaction.evo_total = (row['commission_total']*0.1).round(2)
+					transaction.commission_total = row['commission_total']
+				end
 				transaction.invoice = row['invoice']
 				transaction.traveler = row['traveler']
 				transaction.itinerary = row['itinerary']
